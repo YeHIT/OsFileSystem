@@ -63,8 +63,12 @@ void readBlokcInfo(char *block_buf,int blokc_number);
  */
 void writeBlokcInfo(char *block_buf,int blokc_number);
 
-
+/**
+ * 获取可用的磁盘块
+ */
 int getAvailableDataBlock();
 
-
+/**
+ * 获取可用的inode块
+ */
 int getAvailabeInodeBlock();

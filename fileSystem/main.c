@@ -11,7 +11,6 @@ int magicNumberChanged(int32_t read_number){
     return 1;
 }
 
-
 int main(int argc, char const *argv[]){
     sp_block super_block;
     readSpBlockInfo(&super_block);

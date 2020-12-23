@@ -42,7 +42,6 @@ void initDataBlocks(){
     }
 }
 
-
 void initRootDir(){
     //修改超级块
     sp_block super_block;
@@ -61,8 +60,6 @@ void initRootDir(){
     root_inode.block_point[0] = 1;
     writeInodeInfo(&root_inode,ROOT_INODE);
 }
-
-
 
 void initFileSystem(){
     initSuperBlock();

@@ -1,8 +1,5 @@
 #include "util.h"
 
-uint32_t bit_map[32];
-
-
 void writeSpBlockInfo(sp_block *super_block){
     open_disk();
     disk_write_block(0,(char *) super_block);
@@ -96,10 +93,6 @@ void writeBlokcInfo(char *block_buf,int blokc_number){
     disk_write_block(blokc_number,block_buf);
     close_disk();
 }
-
-
-
-
 
 int getAvailabeInodeBlock(){
     sp_block super_block;

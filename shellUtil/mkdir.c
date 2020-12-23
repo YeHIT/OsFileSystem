@@ -1,6 +1,5 @@
 #include "mkdir.h"
 
-
 void createDir(char path[],char * dir_name){
     char buf[DEVICE_BLOCK_SIZE];
     dirent *item_index;

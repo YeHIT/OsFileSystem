@@ -53,7 +53,6 @@ void AnalyseCmd(char *cmd,char* argv[],int* argc){
 	argv[*argc] = '\0';
 }
 
-
 void RunCmd(int argc,char* argv[]){
     if(strcmp(argv[0],"ls") == 0){
         if(argc != 2){

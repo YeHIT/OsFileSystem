@@ -1,6 +1,5 @@
 #include "ls.h"
 
-
 void ls(char *path){
     char path_header[MAX_NAME_LENGTH];
     strcpy(path_header,path);
