@@ -14,6 +14,7 @@ void ls(char *path){
     token = strtok(path,"/");
     token = strtok(NULL,"/");
 	while(token != NULL){
+        find_flag = 0;
         // 未到目标文件
         if(token != NULL){
             for(int i = 0 ; i < BLOCK_NUMBER_IN_INODE; i++){
@@ -37,11 +38,11 @@ void ls(char *path){
                 if(find_flag == 1){
                     break;
                 }
-                else{
-                    printf("无%s目录\n",token);
-                    return;
-                }
 		    }
+			if(find_flag == 0){
+                printf("无%s目录\n",token);
+                return;
+            }
             token = strtok(NULL,"/");
         }
     }

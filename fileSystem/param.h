@@ -1,6 +1,6 @@
 #define MAX_INODE_NUMBER 32 * 32       // 最大索引数组块的数量
 #define BLOCK_NUMBER_IN_INODE 6        // 每个索引数组包含的数据块个数
-#define MAX_NAME_LENGTH 128            // 文件/目录名最大长度
+#define MAX_NAME_LENGTH 121            // 文件/目录名最大长度
 #define MAX_BLOCK_NUMBER 4 * 1024      // 最大数据块数量
 #define BLOCK_MAP_LENGTH 121           // 数据块位图大小
 #define INODE_MAP_LENGTH 32            // 索引节点块位图大小

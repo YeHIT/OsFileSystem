@@ -8,12 +8,14 @@ void createDir(char path[],char * dir_name){
     int block_number;
     //根节点
     inode root_inode;
+    int inode_id = ROOT_INODE;
     readInodeInfo(&root_inode,ROOT_INODE);
     //解析路径
     char *token = path;
     token = strtok(path,"/");
     token = strtok(NULL,"/");
     while(token != NULL){
+        find_flag = 0;
         // 未到目标文件
         if(token != NULL){
             for(int i = 0 ; i < BLOCK_NUMBER_IN_INODE; i++){
@@ -27,7 +29,7 @@ void createDir(char path[],char * dir_name){
                     if(item_index->valid == VALID){
                         //找到相应路径的dirent
                         if(item_index->type == DIR_TYPE && (strcmp(item_index->name,token) == 0)){
-                            int inode_id = item_index->inode_id;
+                            inode_id = item_index->inode_id;
                             readInodeInfo(&root_inode,inode_id);
                             find_flag = 1;
                             break;
@@ -37,13 +39,17 @@ void createDir(char path[],char * dir_name){
                 if(find_flag == 1){
                     break;
                 }
-                else{
-                    printf("无%s目录\n",token);
-                    return;
-                }
+                
 		    }
+            if(find_flag == 0){
+                printf("无%s目录\n",token);
+                return;
+            }
             token = strtok(NULL,"/");
         }
+    }
+    for(int i = 0; i < BLOCK_NUMBER_IN_INODE; i++){
+        printf("%d\n",root_inode.block_point[i]);
     }
     //判断该块是否存在文件
     for(int i = 0 ; i < BLOCK_NUMBER_IN_INODE; i++){
@@ -52,6 +58,7 @@ void createDir(char path[],char * dir_name){
         if(block_number == 0){
             int block_id = getAvailableDataBlock();
             root_inode.block_point[i] = block_id;
+            writeInodeInfo(&root_inode,inode_id);
             block_number = root_inode.block_point[i];
         }
         readBlokcInfo(buf,block_number);
