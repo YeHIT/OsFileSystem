@@ -81,14 +81,5 @@ void RunCmd(int argc,char* argv[]){
             return;
         }
         fileCopy(argv[1],argv[2],argv[3]);
-    }
-    else if(strcmp(argv[0],"shutdown") == 0){
-        if(argc != 1){
-            printf("shutdown argument error\n");
-            return;
-        }
-        printf("thank you for using Ye's file system!!\n");
-        return ;
-    }
-    
+    }    
 }
