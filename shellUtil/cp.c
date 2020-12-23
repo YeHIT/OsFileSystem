@@ -1,6 +1,6 @@
 #include "cp.h"
 
-void fileCopy(char *src_path,char *file_name,char *dst_path){
+void fileCopy(char *src_path,char *dst_path){
     //根节点
     inode root_inode;
     readInodeInfo(&root_inode,ROOT_INODE);
@@ -11,9 +11,14 @@ void fileCopy(char *src_path,char *file_name,char *dst_path){
     int inode_id = ROOT_INODE;
     //解析路径
     char *token = src_path;
+    char *file_name = token;
     token = strtok(src_path,"/");
     token = strtok(NULL,"/");
     while(token != NULL){
+        file_name = strtok(NULL,"/");
+        if(file_name == NULL){
+            break;
+        }
         find_flag = 0;
         // 未到目标文件
         if(token != NULL){
@@ -43,10 +48,10 @@ void fileCopy(char *src_path,char *file_name,char *dst_path){
                 printf("无%s目录\n",token);
                 return;
             }
-            token = strtok(NULL,"/");
+            token = file_name;
         }
     }
-
+    file_name = token;
     find_flag = 0;
     //判断该块是否存在文件
     for(int i = 0 ; i < BLOCK_NUMBER_IN_INODE; i++){

@@ -76,10 +76,10 @@ void RunCmd(int argc,char* argv[]){
         createDir(argv[1],argv[2]);
     }
     else if(strcmp(argv[0],"cp") == 0){
-        if(argc != 4){
+        if(argc != 3){
             printf("touch argument error\n");
             return;
         }
-        fileCopy(argv[1],argv[2],argv[3]);
+        fileCopy(argv[1],argv[2]);
     }    
 }
