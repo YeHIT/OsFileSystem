@@ -1,7 +1,5 @@
 #include "touch.h"
 
-// disk_structure my_disk;   //磁盘结构
-
 void createFile(char path[],char * file_name){
     //根节点
     inode root_inode;
@@ -48,17 +46,13 @@ void createFile(char path[],char * file_name){
             token = strtok(NULL,"/");
         }
     }
-
-    for(int i = 0; i < BLOCK_NUMBER_IN_INODE; i++){
-        printf("%d\n",root_inode.block_point[i]);
-    }
+    find_flag = 0;
     //判断该块是否存在文件
     for(int i = 0 ; i < BLOCK_NUMBER_IN_INODE; i++){
         block_number = root_inode.block_point[i];
         //若没有则添加新数据块
         if(block_number == 0){
             int block_id = getAvailableDataBlock();
-            printf("new block id is %d\n",block_id);
             root_inode.block_point[i] = block_id;
             writeInodeInfo(&root_inode,inode_id);
             block_number = root_inode.block_point[i];
@@ -85,5 +79,9 @@ void createFile(char path[],char * file_name){
         if(find_flag == 1){
             break;
         }
+    }
+    if(find_flag == 0){
+        printf("无可用空间\n");
+        return;
     }
 }

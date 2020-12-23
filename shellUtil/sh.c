@@ -61,7 +61,6 @@ void RunCmd(int argc,char* argv[]){
             return;
         }
         ls(argv[1]);
-        
     }
     else if(strcmp(argv[0],"touch") == 0){
         if(argc != 3){
@@ -78,18 +77,19 @@ void RunCmd(int argc,char* argv[]){
         createDir(argv[1],argv[2]);
     }
     else if(strcmp(argv[0],"cp") == 0){
-        if(argc != 3){
+        if(argc != 4){
             printf("touch argument error\n");
             return;
         }
-        printf("cp!!!\n");
+        fileCopy(argv[1],argv[2],argv[3]);
     }
     else if(strcmp(argv[0],"shutdown") == 0){
         if(argc != 1){
             printf("shutdown argument error\n");
             return;
         }
-        printf("shutdown!!\n");
+        printf("thank you for using Ye's file system!!\n");
+        return ;
     }
     
 }

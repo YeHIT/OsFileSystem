@@ -48,9 +48,7 @@ void createDir(char path[],char * dir_name){
             token = strtok(NULL,"/");
         }
     }
-    for(int i = 0; i < BLOCK_NUMBER_IN_INODE; i++){
-        printf("%d\n",root_inode.block_point[i]);
-    }
+    find_flag = 0;
     //判断该块是否存在文件
     for(int i = 0 ; i < BLOCK_NUMBER_IN_INODE; i++){
         block_number = root_inode.block_point[i];
@@ -89,5 +87,9 @@ void createDir(char path[],char * dir_name){
         if(find_flag == 1){
             break;
         }
+    }
+    if(find_flag == 0){
+        printf("无可用空间\n");
+        return;
     }
 }
