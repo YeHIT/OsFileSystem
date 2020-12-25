@@ -12,8 +12,6 @@ int magicNumberChanged(int32_t read_number){
 }
 
 int main(int argc, char const *argv[]){
-    //主进程
-    int main_proc = getpid();
     sp_block super_block;
     readSpBlockInfo(&super_block);
     //如果磁盘幻数被改变
@@ -45,6 +43,7 @@ int main(int argc, char const *argv[]){
 		if(myFork() == 0){
             if(strcmp(argv[0],"shutdown") != 0){
         	    RunCmd(argc,argv);
+                return 0;
             }
 		}
         wait(0);
